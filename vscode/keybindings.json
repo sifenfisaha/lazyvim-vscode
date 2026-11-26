@@ -1,0 +1,35 @@
+// Neovim (LazyVim) keys for the parts of VS Code that Neovim does not control.
+// Editor keys live in ~/.config/nvim/lua/config/vscode.lua.
+[
+  // <C-h/j/k/l>: move between windows from the sidebar, panel and terminal
+  { "key": "ctrl+h", "command": "workbench.action.navigateLeft", "when": "!editorTextFocus && !inputFocus || terminalFocus" },
+  { "key": "ctrl+j", "command": "workbench.action.navigateDown", "when": "!editorTextFocus && !inputFocus || terminalFocus" },
+  { "key": "ctrl+k", "command": "workbench.action.navigateUp", "when": "!editorTextFocus && !inputFocus || terminalFocus" },
+  { "key": "ctrl+l", "command": "workbench.action.navigateRight", "when": "!editorTextFocus && !inputFocus || terminalFocus" },
+
+  // <C-/>: toggle the terminal from inside it
+  { "key": "ctrl+/", "command": "workbench.action.terminal.toggleTerminal", "when": "terminalFocus" },
+
+  // <leader>e and q: close the file explorer from inside it (neo-tree)
+  { "key": "space e", "command": "workbench.action.toggleSidebarVisibility", "when": "filesExplorerFocus && !inputFocus" },
+  { "key": "q", "command": "workbench.action.toggleSidebarVisibility", "when": "filesExplorerFocus && !inputFocus" },
+
+  // <A-j>/<A-k>: move lines
+  { "key": "alt+j", "command": "editor.action.moveLinesDownAction", "when": "editorTextFocus && !editorReadonly" },
+  { "key": "alt+k", "command": "editor.action.moveLinesUpAction", "when": "editorTextFocus && !editorReadonly" },
+
+  // <A-n>/<A-p>: next / previous reference of the word under the cursor
+  { "key": "alt+n", "command": "editor.action.wordHighlight.next", "when": "editorTextFocus" },
+  { "key": "alt+p", "command": "editor.action.wordHighlight.prev", "when": "editorTextFocus" },
+
+  // <C-s>: save and return to normal mode
+  { "key": "ctrl+s", "command": "runCommands", "when": "editorTextFocus && neovim.init",
+    "args": { "commands": ["workbench.action.files.save", "vscode-neovim.escape"] } },
+
+  // Copilot inline suggestions (Tab already accepts)
+  { "key": "alt+w", "command": "editor.action.inlineSuggest.acceptNextWord", "when": "inlineSuggestionVisible" },
+  { "key": "alt+l", "command": "editor.action.inlineSuggest.acceptNextLine", "when": "inlineSuggestionVisible" },
+  { "key": "alt+]", "command": "editor.action.inlineSuggest.showNext", "when": "inlineSuggestionVisible" },
+  { "key": "alt+[", "command": "editor.action.inlineSuggest.showPrevious", "when": "inlineSuggestionVisible" },
+  { "key": "ctrl+]", "command": "editor.action.inlineSuggest.hide", "when": "inlineSuggestionVisible && neovim.mode == insert" }
+]
